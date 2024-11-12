@@ -1,0 +1,12 @@
+-- CREATE TRIGGER
+
+DELIMITER $$
+
+CREATE TRIGGER calculate_age_before_insert
+BEFORE INSERT ON basic_info
+FOR EACH ROW
+BEGIN
+    SET NEW.age = TIMESTAMPDIFF(YEAR, NEW.dob, CURDATE());
+END $$
+
+DELIMITER ;
